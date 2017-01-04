@@ -1,17 +1,44 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <title>{{title}}</title>
-    <meta name="description" content="{{description}}">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{title}} | {{site.title}}</title>
 
-    <link rel="stylesheet" type="text/css" href="/assets/vendor.css">
-    <link rel="stylesheet" type="text/css" href="/assets/app.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{{description}}">
+    <meta name="author" content="{{site.author}}" />
+    <link rel="canonical" href="{{site.url}}{{url}}">
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Facebook and Twitter integration -->
+    <meta property="og:title" content="{{title}} | {{site.title}}"/>
+    <meta property="og:image" content="{{assets.img}}/{{site.logo}}"/>
+    <meta property="og:url" content="{{site.url}}"/>
+    <meta property="og:site_name" content="{{title}} | {{site.title}}"/>
+    <meta property="og:description" content="{{description}}"/>
+    <meta name="twitter:title" content="{{title}} | {{site.title}}" />
+    <meta name="twitter:image" content="{{assets.img}}/{{site.logo}}" />
+    <meta name="twitter:url" content="{{site.url}}" />
+    <meta name="twitter:card" content="" />
+
+    <!-- Fonts -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+    <!-- Styles -->
+    <link rel="stylesheet" type="text/css" href="{{assets.styles}}/app.css">
+
+    {{> analytics}}
   </head>
-  <body data-function="{{function}}">
+  <body>
     <!--[if lt IE 8]>
     <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -28,8 +55,13 @@
     {{> footer}}
     {{/block}}
 
-    <script src="/assets/vendor.js" async></script>
-    <script src="/assets/app.js" async></script>
+    <script>
+      var page = "{{ prefix }}";
+      var files = {{{ json files }}};
+      var assets = {{{ json assets }}};
+    </script>
+    <script src="{{assets.scripts}}/commons.chunk.js"></script>
+    <script src="{{assets.scripts}}/app.js" async></script>
     {{#block "scripts"}}{{/block}}
   </body>
 </html>
