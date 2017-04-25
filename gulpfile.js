@@ -115,16 +115,16 @@ gulp.task('styles', function() {
 
 gulp.task('webpack', function(callback) {
   var webpackPlugins = [
-      new webpack.ProvidePlugin({
-        $: "jquery",
-        jQuery: "jquery"
-      }),
-      new webpack.optimize.CommonsChunkPlugin('vendor', 'commons.chunk.js'),
-      new webpack.DefinePlugin({
-        "process.env": {
-          NODE_ENV: JSON.stringify(args.production ? 'production' : 'development')
-        }
-      })
+    new webpack.ProvidePlugin({
+      $: "jquery",
+      jQuery: "jquery"
+    }),
+    new webpack.optimize.CommonsChunkPlugin({name: 'vendor', filename: 'commons.chunk.js' }),
+    new webpack.DefinePlugin({
+      "process.env": {
+        NODE_ENV: JSON.stringify(args.production ? 'production' : 'development')
+      }
+    })
   ];
 
   if (args.production) {
@@ -141,8 +141,9 @@ gulp.task('webpack', function(callback) {
       path: path.join(__dirname, config.metalsmith.config.assetRoot, 'assets'),
       filename: 'app.js'
     },
-    resolveLoader: {
-      root: path.join(__dirname, 'node_modules')
+    resolve: {
+      modules: [__dirname, 'node_modules'],
+      extensions: ['*','.js']
     },
     module: {
       loaders: [
