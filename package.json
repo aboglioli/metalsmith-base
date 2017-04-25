@@ -55,5 +55,7 @@
     "serve-static": "^1.12.1",
     "webpack": "^2.4.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "normalize-scss": "^6.0.0"
+  }
 }
